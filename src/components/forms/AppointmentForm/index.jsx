@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
@@ -7,7 +8,7 @@ import { schedulingFormSchema } from '../../../services/validations/forms';
 const initialValues = {
   name: '',
   birthday: null,
-  selectedDate: null
+  selectedDate: null,
 };
 
 const onSubmit = (values) => {
