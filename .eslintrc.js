@@ -1,30 +1,37 @@
-/* eslint-disable prettier/prettier */
 module.exports = {
   env: {
     browser: true,
-    es2021: true
+    es2021: true,
   },
   extends: [
     'plugin:react/recommended',
     'prettier',
     'prettier/prettier',
     'airbnb',
-    'eslint-config-prettier'
+    'plugin:prettier/recommended',
   ],
   parser: 'babel-eslint',
   parserOptions: {
     ecmaFeatures: {
-      jsx: true
+      jsx: true,
     },
     ecmaVersion: 12,
-    sourceType: 'module'
+    sourceType: 'module',
   },
-  plugins: ['react', 'eslint-plugin-prettier'],
+  plugins: ['react', 'prettier'],
   rules: {
-    'prettier/prettier': 'error',
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
     'react/jsx-filename-extension': ['warn', { extensions: ['.js', '.jsx'] }],
     'import/prefer-default-export': 'off',
-    'jsx-quotes': ['error', 'prefer-single'],
-    'comma-dangle': ['error', 'never']
-  }
+    'react/prop-types': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'react/jsx-uses-react': 'off',
+    'react/react-in-jsx-scope': 'off',
+    'no-unused-vars': 'warn',
+  },
 };

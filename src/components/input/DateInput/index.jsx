@@ -1,6 +1,7 @@
-import { ErrorMessage, Field } from "formik";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import React from 'react';
+import { ErrorMessage, Field } from 'formik';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 function DateInput(props) {
   const { label, name, ...rest } = props;
@@ -13,7 +14,7 @@ function DateInput(props) {
   };
 
   return (
-    <div className="form-control">
+    <div className='form-control'>
       <label htmlFor={name}> {label} </label>
       <Field name={name}>
         {({ form, field }) => {
@@ -26,7 +27,7 @@ function DateInput(props) {
               {...rest}
               filterTime={filterPassedTime}
               dateFormat={
-                rest.showTimeSelect ? "dd/MM/yyyy, HH:mm" : "dd/MM/yyyy"
+                rest.showTimeSelect ? 'dd/MM/yyyy, HH:mm' : 'dd/MM/yyyy'
               }
               selected={value}
               onChange={(newValue) => setFieldValue(name, newValue)}
@@ -34,7 +35,7 @@ function DateInput(props) {
           );
         }}
       </Field>
-      <ErrorMessage name={name} component="div" />
+      <ErrorMessage name={name} component='div' />
     </div>
   );
 }
