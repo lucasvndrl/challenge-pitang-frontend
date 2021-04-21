@@ -1,4 +1,3 @@
-import React from 'react';
 import { ErrorMessage, Field } from 'formik';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -6,36 +5,35 @@ import 'react-datepicker/dist/react-datepicker.css';
 function DateInput(props) {
   const { label, name, ...rest } = props;
 
-  const filterPassedTime = (time) => {
-    const currentDate = new Date();
-    const selectedDate = new Date(time);
-
-    return currentDate.getTime() < selectedDate.getTime();
-  };
-
   return (
-    <div className='form-control'>
-      <label htmlFor={name}> {label} </label>
+    <div className='form-group form-focus'>
+      <label className='focus-label' htmlFor={name}>
+        {label}
+      </label>
       <Field name={name}>
-        {({ form, field }) => {
+        {({ form, field, meta }) => {
           const { value } = field;
           const { setFieldValue } = form;
           return (
             <DatePicker
+              autoComplete='off'
+              className={`form-control floating ${meta.error && 'error'}`}
               id={name}
               {...field}
               {...rest}
-              filterTime={filterPassedTime}
               dateFormat={
                 rest.showTimeSelect ? 'dd/MM/yyyy, HH:mm' : 'dd/MM/yyyy'
               }
               selected={value}
               onChange={(newValue) => setFieldValue(name, newValue)}
+              showMonthDropdown
+              showYearDropdown
+              dropdownMode='select'
             />
           );
         }}
       </Field>
-      <ErrorMessage name={name} component='div' />
+      <ErrorMessage className='error' name={name} component='span' />
     </div>
   );
 }

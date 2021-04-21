@@ -1,9 +1,9 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { toast } from 'react-toastify';
+import { setMinutes, setHours } from 'date-fns';
 import DateInput from '../../input/DateInput';
 import { schedulingFormSchema } from '../../../services/validations/forms';
+import axios from '../../../services/api/index';
 
 const initialValues = {
   name: '',
@@ -11,9 +11,29 @@ const initialValues = {
   selectedDate: null,
 };
 
-const onSubmit = (values) => {
-  console.log('Form data', values);
+const filterPassedTime = (time) => {
+  const currentDate = new Date();
+  const selectedDate = new Date(time);
+
+  return currentDate.getTime() < selectedDate.getTime();
 };
+
+const onSubmit = async (values) => {
+  await axios
+    .post('/appointment', {
+      name: values.name,
+      birthday: values.birthday,
+      selectedDate: values.selectedDate,
+    })
+    .then(() => {
+      toast.info('Agendamento concluído!');
+    })
+    .catch((e) => {
+      toast.error(e.response.data.message);
+    });
+};
+
+const now = new Date();
 
 const AppointmentForm = () => (
   <Formik
@@ -23,23 +43,44 @@ const AppointmentForm = () => (
   >
     {(formik) => (
       <Form className='form'>
-        <div className='form-control'>
-          <label htmlFor='name'>Name</label>
-          <Field type='text' id='name' name='name' />
-          <ErrorMessage name='name' />
+        <div className='form-group form-focus'>
+          <label className='focus-label' htmlFor='name'>
+            Nome
+          </label>
+          <Field
+            className={`form-control floating ${formik.errors.name && 'error'}`}
+            type='text'
+            id='name'
+            name='name'
+          />
+          <ErrorMessage component='span' className='error' name='name' />
         </div>
 
-        <DateInput name='birthday' label='Data de Nascimento' />
+        <DateInput
+          name='birthday'
+          label='Data de Nascimento '
+          maxDate={new Date()}
+        />
 
         <DateInput
           name='selectedDate'
-          label='Data para Vacinação'
+          label='Data para Vacinação '
           showTimeSelect
+          minDate={new Date()}
+          minTime={setHours(setMinutes(now, 0), 6)}
+          maxTime={setHours(setMinutes(now, 30), 18)}
+          filterTime={filterPassedTime}
         />
 
-        <button type='submit' disabled={!formik.dirty && formik.isValid}>
-          Submit
-        </button>
+        <div className='d-flex flex-row-reverse'>
+          <button
+            className='btn btn-primary btn-md'
+            type='submit'
+            disabled={!formik.dirty && formik.isValid}
+          >
+            Agendar
+          </button>
+        </div>
       </Form>
     )}
   </Formik>

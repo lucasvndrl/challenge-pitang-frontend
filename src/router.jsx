@@ -1,14 +1,24 @@
-/* eslint-disable prettier/prettier */
-import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import AppointmentForm from './components/forms/AppointmentForm';
+import CreateAppointment from './pages/CreateAppointment';
+import AppointmentView from './pages/AppointmentView';
+import Home from './pages/Home';
 
 const routes = [
   {
-    component: AppointmentForm,
+    component: CreateAppointment,
     name: 'Agendamento',
-    path: '/agendamento'
-  }
+    path: '/agendamento',
+  },
+  {
+    component: AppointmentView,
+    name: 'Lista de agendamentos',
+    path: '/lista',
+  },
+  {
+    component: Home,
+    name: 'Home',
+    path: '/',
+  },
 ];
 
 const Routes = () => (

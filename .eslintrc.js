@@ -26,6 +26,7 @@ module.exports = {
         endOfLine: 'auto',
       },
     ],
+    'no-underscore-dangle': 'off',
     'react/jsx-filename-extension': ['warn', { extensions: ['.js', '.jsx'] }],
     'import/prefer-default-export': 'off',
     'react/prop-types': 'off',
@@ -33,5 +34,6 @@ module.exports = {
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
     'no-unused-vars': 'warn',
+    'jsx-a11y/label-has-associated-control': 'off',
   },
 };
