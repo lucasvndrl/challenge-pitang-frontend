@@ -1,6 +1,25 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import CreateAppointment from './pages/CreateAppointment';
+import AppointmentView from './pages/AppointmentView';
+import Home from './pages/Home';
 
-const routes = [];
+const routes = [
+  {
+    component: CreateAppointment,
+    name: 'Agendamento',
+    path: '/agendamento',
+  },
+  {
+    component: AppointmentView,
+    name: 'Lista de agendamentos',
+    path: '/lista',
+  },
+  {
+    component: Home,
+    name: 'Home',
+    path: '/',
+  },
+];
 
 const Routes = () => (
   <BrowserRouter>
