@@ -14,3 +14,6 @@ Project created as a challenge for a job position at Pitang Agile IT.
 1. Open this folder in bash
 2. Run the command npm i
 3. And finally run npm start to run the project
+
+## .env variables
+1. REACT_APP_API_BASE_URL= Your own localhost api url
