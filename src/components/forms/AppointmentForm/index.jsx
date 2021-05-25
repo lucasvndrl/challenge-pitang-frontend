@@ -52,14 +52,21 @@ const AppointmentForm = () => (
             type='text'
             id='name'
             name='name'
+            data-testid='nameform-test'
           />
-          <ErrorMessage component='span' className='error' name='name' />
+          <ErrorMessage
+            component='span'
+            className='error'
+            name='name'
+            data-testid='error-name-test'
+          />
         </div>
 
         <DateInput
           name='birthday'
           label='Data de Nascimento '
           maxDate={new Date()}
+          data-testid='birthdayform-test'
         />
 
         <DateInput
@@ -70,6 +77,7 @@ const AppointmentForm = () => (
           minTime={setHours(setMinutes(now, 0), 6)}
           maxTime={setHours(setMinutes(now, 30), 18)}
           filterTime={filterPassedTime}
+          data-testid='dateform-test'
         />
 
         <div className='d-flex flex-row-reverse'>
@@ -77,6 +85,7 @@ const AppointmentForm = () => (
             className='btn btn-primary btn-md'
             type='submit'
             disabled={!formik.dirty && formik.isValid}
+            data-testid='buttonform-test'
           >
             Agendar
           </button>

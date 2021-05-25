@@ -69,7 +69,7 @@ function AppointmentList() {
 
   return (
     <>
-      <Table>
+      <Table data-testid='appointmentlist-test'>
         <thead>
           <tr>
             <th>Nome: </th>

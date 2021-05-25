@@ -2,7 +2,7 @@ import { Card } from 'react-bootstrap';
 
 function index({ title, children }) {
   return (
-    <Card>
+    <Card data-testid='card-test'>
       <Card.Header>
         <Card.Title>{title}</Card.Title>
       </Card.Header>
